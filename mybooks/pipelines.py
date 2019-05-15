@@ -14,10 +14,16 @@ class MybooksPipeline(object):
         # self.f = open("books.txt", "a", encoding="utf-8")
         # 连接MongoDB数据库服务器
         self.db_client = pymongo.MongoClient()
-        # 指定操作数据库的对象
-        self.db = self.db_client["scrape"]
-        # 指定集合（类似MYSQL中的表)
-        self.db_collection = self.db["books"]
+        if spider.name == "books":
+            # 指定操作数据库的对象
+            self.db = self.db_client["scrape"]
+            # 指定集合（类似MYSQL中的表)
+            self.db_collection = self.db["books"]
+        else:
+            # 指定操作数据库的对象
+            self.db = self.db_client["douban"]
+            # 指定集合（类似MYSQL中的表)
+            self.db_collection = self.db["movies"]
 
     def process_item(self, item, spider):
         # 处理数据

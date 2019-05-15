@@ -13,3 +13,12 @@ class MybooksItem(scrapy.Item):
     name = scrapy.Field()#  书籍名称
     price = scrapy.Field() #  价格
     url = scrapy.Field()#  链接地址
+    content = scrapy.Field()#  书籍简介
+
+
+class MoviesItem(scrapy.Item):
+    title = scrapy.Field()  #
+    rate = scrapy.Field()  #
+    url = scrapy.Field()  #
+    img = scrapy.Field()  #
+
