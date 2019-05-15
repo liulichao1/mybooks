@@ -7,16 +7,16 @@ from scrapy import Request
 from mybooks.items import MoviesItem
 import json
 
+
 class doubanSpider(Spider):
     name = "douban"
 
     def start_requests(self):
-        url = "https://movie.douban.com/j/search_subjects?type=movie&tag=%E6%9C%80%E6%96%B0&page_limit=20&page_start=0"
+        url = "https://movie.douban.com/j/search_subjects?type=movie&tag=最新&page_limit=20&page_start=0"
         yield Request(url)
 
-
     def parse(self, response):
-        movies_dict = json.loads(response.text)#  字典类型
+        movies_dict = json.loads(response.text)  # 字典类型
 
         for one_movie in movies_dict["subjects"]:
             item = MoviesItem()
@@ -25,4 +25,3 @@ class doubanSpider(Spider):
             item["url"] = one_movie["url"]
             item["img"] = one_movie["cover"]
             yield item
-
